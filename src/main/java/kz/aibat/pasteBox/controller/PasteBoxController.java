@@ -1,9 +1,7 @@
 package kz.aibat.pasteBox.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import kz.aibat.pasteBox.dto.PasteBoxDTO;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +20,7 @@ public class PasteBoxController {
     }
 
     @PostMapping("/")
-    public String addNewPaste() {
-        return "111";
+    public String addNewPaste(@RequestBody PasteBoxDTO pasteBoxDTO) {
+        return pasteBoxDTO.getData();
     }
 }
