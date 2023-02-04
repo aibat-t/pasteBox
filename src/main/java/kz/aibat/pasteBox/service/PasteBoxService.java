@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface PasteBoxService {
     PasteBoxResponseDTO getByHash(String hash);
-    List<PasteBoxResponseDTO> getPublicPasteBoxList(int amount);
+    List<PasteBoxResponseDTO> getPublicPasteBoxList();
     PasteBoxUrlDTO create(PasteBoxRequestDTO request);
 }

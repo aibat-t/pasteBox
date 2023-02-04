@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
+
 @Mapper(componentModel = "spring")
 public interface PasteBoxMapper {
     PasteBoxResponseDTO pasteBoxToDTO(PasteBox pasteBox);
@@ -14,6 +15,4 @@ public interface PasteBoxMapper {
     List<PasteBoxResponseDTO> pasteBoxListToDTOList(List<PasteBox> pasteBoxList);
 
     PasteBox dtoToPasteBox(PasteBoxRequestDTO pasteBoxRequestDTO);
-
-    List<PasteBox> dtoListToPasteBoxList(List<PasteBoxRequestDTO> pasteBoxRequestDTOList);
 }
