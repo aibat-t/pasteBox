@@ -1,6 +1,6 @@
 package kz.aibat.pasteBox.controller;
 
-import kz.aibat.pasteBox.dto.PasteBoxDTO;
+import kz.aibat.pasteBox.dto.request.PasteBoxRequestDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -20,7 +20,7 @@ public class PasteBoxController {
     }
 
     @PostMapping("/")
-    public String addNewPaste(@RequestBody PasteBoxDTO pasteBoxDTO) {
-        return pasteBoxDTO.getData();
+    public String addNewPaste(@RequestBody PasteBoxRequestDTO pasteBoxRequestDTO) {
+        return pasteBoxRequestDTO.getData();
     }
 }

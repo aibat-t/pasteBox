@@ -1,12 +1,10 @@
-package kz.aibat.pasteBox.dto;
+package kz.aibat.pasteBox.dto.request;
 
 import kz.aibat.pasteBox.enums.PublicStatus;
 import lombok.Data;
 
-import javax.persistence.Column;
-
 @Data
-public class PasteBoxDTO {
+public class PasteBoxRequestDTO {
 
     private String data;
 
