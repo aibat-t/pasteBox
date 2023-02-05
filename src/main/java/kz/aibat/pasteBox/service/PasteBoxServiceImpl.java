@@ -8,27 +8,24 @@ import kz.aibat.pasteBox.mapper.PasteBoxMapper;
 import kz.aibat.pasteBox.model.PasteBox;
 import kz.aibat.pasteBox.repository.PasteBoxRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Service
-@ConfigurationProperties(prefix = "app")
 @RequiredArgsConstructor
 public class PasteBoxServiceImpl implements PasteBoxService {
 
     private final PasteBoxRepository pasteBoxRepository;
-    @Autowired
     private final PasteBoxMapper pasteBoxMapper;
-    private final AtomicLong atomicLong = new AtomicLong(0);
 
+    @Value("${app.host}")
     private String host;
+    @Value("${app.public_list_size}")
     private int publicListSize;
 
     @Override
@@ -51,17 +48,12 @@ public class PasteBoxServiceImpl implements PasteBoxService {
 
     @Override
     public PasteBoxUrlDTO create(PasteBoxRequestDTO request) {
-        long hash = generatedId();
 
         PasteBox pasteBox = pasteBoxMapper.dtoToPasteBox(request);
-        pasteBox.setHash(Long.toHexString(hash));
+        pasteBox.setHash(Integer.toString(pasteBox.hashCode()));
 
         PasteBox newPasteBox = pasteBoxRepository.save(pasteBox);
 
         return new PasteBoxUrlDTO(host + "/" +newPasteBox.getHash());
-    }
-
-    private long generatedId() {
-        return atomicLong.getAndIncrement();
     }
 }
