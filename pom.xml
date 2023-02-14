@@ -92,6 +92,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>paste-box</finalName>
 	</build>
 
 </project>
